@@ -3,17 +3,57 @@ import Header from './Header'
 import { NETFLIX_BG } from '../utils/Constant'
 import { useState, useEffect } from 'react'
 import { isValidSignInCredentials } from '../utils/signin-validation'
+import {auth} from "../utils/Firebase"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { useDispatch } from 'react-redux'
+import { signInUser, updateUserNameandPhotoUrl } from '../utils/userSlice'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
   const [isSignInForm, setIsSignInForm] = useState(true);
-  const [email, setEmail] = useState(null); 
-  const [password, setPassword] = useState(null);
-  const [fullName, setFullName] = useState(null);
+  const [email, setEmail] = useState(''); 
+  const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleToggleSignIn = () => {
     setIsSignInForm(!isSignInForm);
+  }
+
+  const callDispatchUser = (response) => {
+    dispatch(signInUser({email: response.user.email, displayName: response.user.displayName, photoURL: response.user.photoURL}));
+  }
+
+  const updateUserProfile = (response) => {
+    dispatch(updateUserNameandPhotoUrl({displayName: 'suman', photoURL: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRLsgY2CSjie-wnde1gUPNDi5_B_NZ4zBiUon_dKILwbR5TljE5L_cKi8TFF8Yl6qGzQIrvt1cWr2byRYmAyd6M7bAp7xLGj5pq_Z04h8U'}));
+  }
+
+  const handleUserSignInOrSignUp = async () => {
+    if(!isSignInForm){
+      try {
+        const response = await createUserWithEmailAndPassword(auth, email, password);
+        console.log(response);
+        callDispatchUser(response);
+        updateUserProfile(response);
+        navigate('/Browse');
+      } catch (error) {
+        setErrorMessage(error.message);
+      }
+    } else {
+      try {
+        const response = await signInWithEmailAndPassword(auth, email, password);
+        console.log("res", response);
+        callDispatchUser(response);
+        updateUserProfile(response);
+        navigate('/Browse');
+      } catch (error) {
+        setErrorMessage(error.message);
+      }
+    }
   }
 
   const handleSignInClick = () => {
@@ -24,6 +64,9 @@ const Login = () => {
       setErrorMessage(validationMessage);
       return;
     }
+
+    handleUserSignInOrSignUp();
+    
   }
 
   useEffect(() => {

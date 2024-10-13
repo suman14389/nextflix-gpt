@@ -1,20 +1,22 @@
 import React from 'react'
-import { NETFLIX_LOGO } from '../utils/Constant'
+import { NETFLIX_LOGO } from '../utils/Constants'
 import { useSelector } from 'react-redux'
-import { signOutUser } from '../utils/userSlice'
+import { signOutUser } from '../storeSlices/userSlice'
 import { useDispatch } from 'react-redux'
 import { signOut } from 'firebase/auth'
 import { auth } from '../utils/Firebase'
 import { useNavigate } from 'react-router-dom'
+import useGetNowPlayingMovies from '../CustomHooks/useGetNowPlayingMovies'
 
 const Header = () => {
 
   const user = useSelector((store) => store.user);
   const navigate = useNavigate();
-  console.log(user);
 
   const dispatch = useDispatch();
 
+
+  // this can be replace by onAuthStateChanged from firebase
   const handleSignOut = () => {
     signOut(auth).then(() => {
       dispatch(signOutUser());
@@ -22,11 +24,13 @@ const Header = () => {
     }).catch((error) => {
         alert(error.message);
     });
-    
   }
+
+  useGetNowPlayingMovies();
+
   return (
-    <div className='absolute w-full h-20 bg-gradient-to-b from-black flex justify-between items-center'>
-        <img src={NETFLIX_LOGO} alt="Netflix-logo" className='w-800 h-full' />
+    <div className='absolute z-5 w-full h-24 bg-gradient-to-b from-black flex justify-between items-start'>
+        <img src={NETFLIX_LOGO} alt="Netflix-logo" className='w-800 h-20' />
         <div>
           {user.displayName && <div className='flex items-center gap-4 px-4'>
             <img src={user.photoURL} alt="user-profile" className='w-12 h-12 object-cover rounded-full ' />

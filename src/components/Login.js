@@ -1,12 +1,12 @@
 import React from 'react'
 import Header from './Header'
-import { NETFLIX_BG } from '../utils/Constant'
+import { NETFLIX_BG } from '../utils/Constants'
 import { useState, useEffect } from 'react'
 import { isValidSignInCredentials } from '../utils/signin-validation'
 import {auth} from "../utils/Firebase"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
-import { signInUser, updateUserNameandPhotoUrl } from '../utils/userSlice'
+import { signInUser, updateUserNameandPhotoUrl } from '../storeSlices/userSlice'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
@@ -36,7 +36,6 @@ const Login = () => {
     if(!isSignInForm){
       try {
         const response = await createUserWithEmailAndPassword(auth, email, password);
-        console.log(response);
         callDispatchUser(response);
         updateUserProfile(response);
         navigate('/Browse');
@@ -46,7 +45,6 @@ const Login = () => {
     } else {
       try {
         const response = await signInWithEmailAndPassword(auth, email, password);
-        console.log("res", response);
         callDispatchUser(response);
         updateUserProfile(response);
         navigate('/Browse');

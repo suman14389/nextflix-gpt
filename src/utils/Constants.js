@@ -11,3 +11,10 @@ export const TMDB_API_OPTIONS = {
       Authorization: `Bearer ${TMDB_API_KEY}`
     }
   };
+
+const OTHER_MOVIES_API_BASE_URL = "https://api.themoviedb.org/3/movie/";
+export const POPULAR_MOVIES_API_URL = OTHER_MOVIES_API_BASE_URL + "popular";
+export const TOP_RATED_MOVIES_API_URL = OTHER_MOVIES_API_BASE_URL + "top_rated";
+export const UPCOMING_MOVIES_API_URL = OTHER_MOVIES_API_BASE_URL + "upcoming";
+
+export const MOVIE_POSTER_CDN_URL = "https://image.tmdb.org/t/p/w500/";

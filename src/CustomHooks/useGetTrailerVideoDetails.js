@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { TMDB_API_OPTIONS } from "../utils/Constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addTrailerVideoDetails } from "../storeSlices/nowPlayingMovies";

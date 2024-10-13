@@ -29,3 +29,12 @@ Below are the features :
 - main movie trailer detials are also added to the redux slice
 - showed the trailer in the main section
 - showed the details also on top of the trailer
+
+-- developed the secondary container
+    - used the custom hooks to get the popular, top rated and upcoming movies
+    - created a separate component for movie list
+    - created a separate component for movie card
+    - updated the stores with the corresponding movies
+    - added all the constants like card poster path, api urls etc in the constants file
+    - Made the secondary container scrollable
+    - Made the UI look excellent using tailwind css.

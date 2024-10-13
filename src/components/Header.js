@@ -29,14 +29,14 @@ const Header = () => {
   useGetNowPlayingMovies();
 
   return (
-    <div className='absolute w-full h-24 bg-gradient-to-b from-black flex justify-between items-start'>
+    <div className='absolute w-full h-24 bg-gradient-to-b from-black flex justify-between items-start z-10'>
         <img src={NETFLIX_LOGO} alt="Netflix-logo" className='w-800 h-20' />
-        <div>
+        <div className='p-2'>
           {user.displayName && <div className='flex items-center gap-4 px-4'>
             <img src={user.photoURL} alt="user-profile" className='w-12 h-12 object-cover rounded-full ' />
             <div>
               <p className='text-white text-lg font-semibold'>{user.displayName}</p>
-              <span className='text-black text-sm hover:underline cursor-pointer' onClick={handleSignOut}>Sign out</span>
+              <span className='text-white text-sm hover:underline cursor-pointer' onClick={handleSignOut}>Sign out</span>
             </div>
           </div> }
         </div>

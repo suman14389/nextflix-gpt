@@ -29,7 +29,7 @@ const Header = () => {
   useGetNowPlayingMovies();
 
   return (
-    <div className='absolute z-5 w-full h-24 bg-gradient-to-b from-black flex justify-between items-start'>
+    <div className='absolute w-full h-24 bg-gradient-to-b from-black flex justify-between items-start'>
         <img src={NETFLIX_LOGO} alt="Netflix-logo" className='w-800 h-20' />
         <div>
           {user.displayName && <div className='flex items-center gap-4 px-4'>

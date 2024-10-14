@@ -2,13 +2,13 @@ export const NETFLIX_BG = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.c
 
 export const NETFLIX_LOGO = "https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
 
-const TMDB_API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyOWI3MTM0ZWIyNzk0NDRkN2I3NDQwZWY3ZTc3NWNkZCIsIm5iZiI6MTcyODc1Mjk5OC40MTI5NzEsInN1YiI6IjY3MGFhY2FmMzdkODZkNTIwYmIwOGI5MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hvUXN8gcOBzL5V7uhuwAUWXXgFeN0A-dMQ8_zlmg75c";
+export const USER_PHOTO_URL = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRLsgY2CSjie-wnde1gUPNDi5_B_NZ4zBiUon_dKILwbR5TljE5L_cKi8TFF8Yl6qGzQIrvt1cWr2byRYmAyd6M7bAp7xLGj5pq_Z04h8U";
 
 export const TMDB_API_OPTIONS = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: `Bearer ${TMDB_API_KEY}`
+      Authorization: "Bearer " + process.env.REACT_APP_TMDB_SECRET_KEY
     }
   };
 
@@ -18,3 +18,9 @@ export const TOP_RATED_MOVIES_API_URL = OTHER_MOVIES_API_BASE_URL + "top_rated";
 export const UPCOMING_MOVIES_API_URL = OTHER_MOVIES_API_BASE_URL + "upcoming";
 
 export const MOVIE_POSTER_CDN_URL = "https://image.tmdb.org/t/p/w500/";
+
+export const GPT_QUERY = (text) => "Act as a Movie Recommendation system and suggest some movies for the query : " +
+      text +
+      ". only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya"
+
+export const TMDB_MOVIE_NAME_FETCH_URL = "https://api.themoviedb.org/3/search/movie?query=";

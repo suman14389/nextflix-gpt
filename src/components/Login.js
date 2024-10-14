@@ -8,6 +8,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 import { useDispatch } from 'react-redux'
 import { signInUser, updateUserNameandPhotoUrl } from '../storeSlices/userSlice'
 import { useNavigate } from 'react-router-dom'
+import { USER_PHOTO_URL } from '../utils/Constants'
 
 const Login = () => {
 
@@ -28,8 +29,8 @@ const Login = () => {
     dispatch(signInUser({email: response.user.email, displayName: response.user.displayName, photoURL: response.user.photoURL}));
   }
 
-  const updateUserProfile = (response) => {
-    dispatch(updateUserNameandPhotoUrl({displayName: 'suman', photoURL: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRLsgY2CSjie-wnde1gUPNDi5_B_NZ4zBiUon_dKILwbR5TljE5L_cKi8TFF8Yl6qGzQIrvt1cWr2byRYmAyd6M7bAp7xLGj5pq_Z04h8U'}));
+  const updateUserProfile = () => {
+    dispatch(updateUserNameandPhotoUrl({displayName: 'suman', photoURL: USER_PHOTO_URL}));
   }
 
   const handleUserSignInOrSignUp = async () => {
@@ -37,7 +38,7 @@ const Login = () => {
       try {
         const response = await createUserWithEmailAndPassword(auth, email, password);
         callDispatchUser(response);
-        updateUserProfile(response);
+        updateUserProfile();
         navigate('/Browse');
       } catch (error) {
         setErrorMessage(error.message);
@@ -46,7 +47,7 @@ const Login = () => {
       try {
         const response = await signInWithEmailAndPassword(auth, email, password);
         callDispatchUser(response);
-        updateUserProfile(response);
+        updateUserProfile();
         navigate('/Browse');
       } catch (error) {
         setErrorMessage(error.message);
@@ -72,7 +73,7 @@ const Login = () => {
   }, [email, password, fullName])
 
   return (
-    <div className='position-relative min-h-screen bg-cover bg-center' style={{ backgroundImage: `url(${NETFLIX_BG})` }}>
+    <div className='h-screen bg-cover bg-center' style={{ backgroundImage: `url(${NETFLIX_BG})` }}>
         <Header />
         <form className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4/12 bg-black/70 py-10 px-16 text-white flex flex-col gap-7' onSubmit={(e) => e.preventDefault()}>
 

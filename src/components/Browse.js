@@ -4,7 +4,6 @@ import MainContainer from './MainContainer'
 import SecondaryContainer from './SecondaryContainer'
 
 const Browse = () => {
-
   return (
     <>
       <Header />

@@ -17,7 +17,7 @@ const SecondaryContainer = () => {
   if(!nowPlayingMovies) return;
   return (
     <div className='bg-black'>
-        <div className='relative -top-48 z-20'>
+        <div className='relative md:-top-48 top-[50px] z-20'>
             <MovieList title="Now playing" movies={nowPlayingMovies} />
             {
                 Object.values(otherMoviesObject).map(item => item.movies && <MovieList key={item.name} title={item.name} movies={item.movies}/>)

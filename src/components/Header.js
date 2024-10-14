@@ -62,18 +62,18 @@ const Header = () => {
   useGetNowPlayingMovies();
 
   return (
-    <div className='absolute w-full h-24 bg-gradient-to-b from-black flex justify-between items-start z-10'>
-        <img src={NETFLIX_LOGO} alt="Netflix-logo" className='w-800 h-20' />
-        <div className='p-2'>
-          {user.email && <div className='flex items-center gap-4 px-4'>
+    <div className='absolute w-full md:h-24 h-16 bg-gradient-to-b from-black flex justify-between items-start z-10'>
+        <img src={NETFLIX_LOGO} alt="Netflix-logo" className='md:w-48 w-36 h-20' />
+        <div className='md:p-2 md:pt-4 pt-7'>
+          {user.email && <div className='flex items-center gap-4 md:px-4 px-2'>
             <Link to={gpt.isGptPage ? "/browse" : "/gpt"}>
-              <button className='text-white bg-purple-500 text-md font-semibold px-4 py-2 rounded-md cursor-pointer' onClick={handleToggleGptPage}>
+              <button className='text-white bg-purple-500 text-md font-semibold md:px-4 md:py-2 px-2 py-0 rounded-md cursor-pointer' onClick={handleToggleGptPage}>
                 {gpt.isGptPage ? "Home" : "GPT Search"}
               </button>
             </Link>
-            <img src={user.photoURL} alt="user-profile" className='w-12 h-10 object-cover rounded-full ' />
+            <img src={user.photoURL} alt="user-profile" className='w-12 h-10 object-cover rounded-full hidden md:block' />
             <div>
-              <p className='text-white text-lg font-semibold'>{user.displayName}</p>
+              <p className='text-white text-lg font-semibold hidden md:block'>{user.displayName}</p>
               <span className='text-white text-sm hover:underline cursor-pointer' onClick={handleSignOut}>Sign out</span>
             </div>
           </div> }

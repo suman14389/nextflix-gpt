@@ -5,7 +5,7 @@ import { signOutUser, signInUser } from '../storeSlices/userSlice'
 import { useDispatch } from 'react-redux'
 import { signOut,  onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../utils/Firebase'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import useGetNowPlayingMovies from '../CustomHooks/useGetNowPlayingMovies'
 import { USER_PHOTO_URL } from '../utils/Constants'
 import { Link } from 'react-router-dom'
@@ -22,6 +22,11 @@ const Header = () => {
     dispatch(toggleGptPage());
   }
   const gpt = useSelector((store) => store.gpt);
+
+  const params = useLocation();
+  if(params.pathname === "/gpt" && !gpt.isGptPage ) {
+     dispatch(toggleGptPage());
+  }
 
 
   // this can be replace by onAuthStateChanged from firebase

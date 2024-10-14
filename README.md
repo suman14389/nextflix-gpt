@@ -53,3 +53,9 @@ Below are the features :
     - showed the gpt suggested movie results using the existing movie list component. This is re-used which is excellent
     - made the gpt search page scrollable down. 
     - finally made the gpt search page look excellent with tailwind css.
+
+-- fixed the bug 
+    - when user navigates from brwose to gpt by changing the url, toggle the gpt view state
+    - this is fixed.
+
+- 

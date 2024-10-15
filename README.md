@@ -59,3 +59,4 @@ Below are the features :
   - this is fixed.
 
 - made the app responsive
+- deployed on firebase
